@@ -265,7 +265,7 @@ Request:
 
 Response:
 
-    {"result":true,"autocomplete":"1","amplitude":"1","google_maps_key":"*snip*","amplitude_key":"*snip*"}
+    {"result":true,"autocomplete":"1","amplitude":"1","google_maps_key":"*snip*","amplitude_key":"*chip*","defaultChargeCopy":"A charging session is \u00a36 for 30 minutes and free for Ecotricity energy customers.","defaultGuestChargeCopy":"Charging sessions cost \u00a36. We won't take payment until you've successfully finished your charge session.\r\n"}
 
 <br/>
 ####/forgottenUsername
@@ -279,6 +279,7 @@ Request:
 Response:
 
     {"result":true}
+    {"result":false, "message":"*reason*"}
 
 <br/>
 ####/forgottenPassword
@@ -351,6 +352,7 @@ Request:
 Response:
 
     {"result":true}
+    {"result":false, "message":"*reason*"}
 
 <br/>
 
@@ -373,6 +375,7 @@ Request:
 Response:
 
     {"result":true}
+    {"result":false, "message":"*reason*"}
 
 <br/>
 ####/unregisterVehicle
@@ -392,6 +395,7 @@ Request:
 Response:
 
     {"result":true}
+    {"result":false, "message":"*reason*"}
 
 <br/>
 ####/changePassword
@@ -407,6 +411,7 @@ Request:
 Response:
 
     {"result":true}
+    {"result":false, "message":"*reason*"}
 
 <br/>
 ####/startChargeSession
@@ -427,7 +432,26 @@ Request:
 Response:
 
     {"result":true}
+    {"result":false, "message":"*reason*"}
 
+<br/>
+####/stopChargeSession
+Used to stop a charging session early.
+
+Request:
+
+    POST https://www.ecotricity.co.uk/api/ezx/v1/stopChargeSession HTTP/1.1
+    password=*snip*
+    &deviceId=*snip*
+    &sessionId=00011520
+    &identifier=ScottHelme
+    &pumpConnector=1
+    &pumpId=1263
+
+Response:
+
+    {"result":true} 
+    {"result":false, "message":"*reason*"}
 <br/>
 ####/getChargeStatus
 Used to get the status of a charge session.
@@ -448,11 +472,29 @@ Response:
 
 <br/>
 
-The charge here was never actually initiated. I assume there are other status messages we can receive.
+The charge here was never actually initiated. 
 
 Response:
 
     {"result":{"status":"Retry","message":"Sorry there's been problem please disconnect your vehicle and try again.","completed":false,"cost":"","sessionId":"00000228","pumpId":"1263","pumpConnector":"1"}}
+    
+This is a failed charge
+
+<br />
+
+Response:
+
+    {"result":{"status":"In Progress","message":"Your charge session is still progressing.","completed":false,"cost":"","sessionId":"00011520","energyConsumption":"000000","started":"20160729162822","pumpId":"1032","pumpConnector":"1"}}    
+    
+This is a successful start, containing the start time and energy used.  The enery used is updated infrequently and appears to be measured in watts.  The app continues to poll the charge status every 5 seconds to update its display.
+
+<br />
+
+Response:
+
+    {"result":{"status":"Completed","message":"Your charge session has finished. Please return and check your charger.","completed":true,"cost":"6.00 ","sessionId":"00011520","energyConsumption":"004700","started":"20160729162822","finished":"20160729164140","pumpId":"1032","pumpConnector":"1","createdDate":"20160729","createdTime":"162800"}}
+
+This is a completed charge.  The cost is now filled as is the finish time.  The created date and time may be invoice related - after this message is received an invoice will shortly arrive via email.
 
 <br/>
 ####Other bits
