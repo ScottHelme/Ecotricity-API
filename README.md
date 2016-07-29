@@ -179,7 +179,9 @@ Request:
 
 Response:
 
-    {"result":{}}
+    {"result":{"transaction":{"contractAccountId":*snip*","contractAccount":[{"documentNo":"*snip*","sessionId":"00008560","totalCost":"6.00 ","currency":"GBP","date":"20160726","pumpId":"1020","pumpConnector":"1","baseCost":"6.00 ","discountEcoGrp":"0.00 ","discountMultiChg":"0.00 ","surcharge":"0.00 ","freeCost":"0.00 "},{"documentNo":"003500047446","sessionId":"00008312","totalCost":"6.00 ","currency":"GBP","date":"20160726","pumpId":"1272","pumpConnector":"1","baseCost":"6.00 ","discountEcoGrp":"0.00 ","discountMultiChg":"0.00 ","surcharge":"0.00 ","freeCost":"0.00 "}]}}}
+
+This is actually a list of all transactions attempted whether or not were charged - this makes it less than useful.
 
 <br/>
 ####/getUserVehicleList
