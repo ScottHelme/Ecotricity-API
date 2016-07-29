@@ -486,7 +486,7 @@ Response:
 
     {"result":{"status":"In Progress","message":"Your charge session is still progressing.","completed":false,"cost":"","sessionId":"00011520","energyConsumption":"000000","started":"20160729162822","pumpId":"1032","pumpConnector":"1"}}    
     
-This is a successful start, containing the start time and energy used.  The enery used is updated infrequently and appears to be measured in watts.  The app continues to poll the charge status every 5 seconds to update its display.
+This is a successful start, containing the start time and energy used.  The energy used is updated infrequently and appears to be measured in watts.  The app continues to poll the charge status every 5 seconds to update its display.
 
 <br />
 
