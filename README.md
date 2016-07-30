@@ -456,10 +456,9 @@ Response:
     {"result":false, "message":"*reason*"}
 <br/>
 ####/getChargeStatus
-Used to get the status of a charge session. 
-When the app starts up, this is called without a sessionId, pumpConnector, pumpId, vehicleModel or vehicleMake parameter, and it returns the state of any charge going on for this account.
+Used to get the status of a charge session.  This has two forms.  The second form is used at app startup to find out if any charges are running.
 
-Request:
+Request type 1:
 
     POST https://www.ecotricity.co.uk/api/ezx/v1/getChargeStatus HTTP/1.1
     deviceId=*snip*
@@ -468,6 +467,13 @@ Request:
     &vehicleModel=Leaf
     &pumpConnector=1
     &pumpId=1263
+
+Request type 2:
+
+    POST https://www.ecotricity.co.uk/api/ezx/v1/getChargeStatus HTTP/1.1
+    identifier=ScottHelme
+    &password=*snip*
+    &deviceId=*snip*
 
 Response:
 
