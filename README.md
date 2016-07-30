@@ -456,7 +456,8 @@ Response:
     {"result":false, "message":"*reason*"}
 <br/>
 ####/getChargeStatus
-Used to get the status of a charge session.
+Used to get the status of a charge session. 
+When the app starts up, this is called without a sessionId, pumpConnector, pumpId, vehicleModel or vehicleMake parameter, and it returns the state of any charge going on for this account.
 
 Request:
 
